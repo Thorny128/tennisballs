@@ -4,6 +4,11 @@ import random
 from pandas import DataFrame
 import time
 
+HUMAN_WEIGHT = 5
+BALL_WEIGHT = 1
+NUMBER_OF_POINTS = 5
+POINTS = [[0, 0], [8, 1], [5, 4], [10, 8], [8, 10], [5, 9], [1, 6], [0, 0], [0, 0]]
+# Copy and paste a set of points here (origins included)
 
 def pick_point():
     return random.randint(0, 10)
@@ -101,12 +106,11 @@ for iterations in range(1):
     points_dictionary = {}
     start = time.time()
 
-    w = 190
-    b = 30.0
-    n = 5
+    w = HUMAN_WEIGHT
+    b = BALL_WEIGHT
+    n = NUMBER_OF_POINTS
 
-    # Copy and paste a set of points here (origins included)
-    points = [[0, 0], [8, 1], [5, 4], [10, 8], [8, 10], [5, 9], [1, 6], [0, 0], [0, 0]]
+    points = POINTS
     points.remove([0, 0])
     points.remove([0, 0])
 

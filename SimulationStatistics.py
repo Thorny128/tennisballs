@@ -3,6 +3,10 @@ import itertools
 import statistics
 import random
 
+HUMAN_WEIGHT = 5
+BALL_WEIGHT = 1
+NUMBER_OF_SIMULATIONS = 1000
+NUMBER_OF_POINTS = 5
 
 def pick_point():
     return random.randint(0, 10)
@@ -65,8 +69,8 @@ def insert_origins(list):
 points_dictionary = {}
 
 # Change values here
-w = 5
-b = 1
+w = HUMAN_WEIGHT
+b = BALL_WEIGHT
 
 min_costs_list = []
 max_costs_list = []
@@ -80,8 +84,8 @@ dist_diff_list = []
 rw_diff_list = []
 longer_drive_list = []
 
-for j in range(1000):
-    for i in range(5):
+for j in range(NUMBER_OF_SIMULATIONS):
+    for i in range(NUMBER_OF_POINTS):
         points_dictionary[i] = [pick_point(), pick_point()]
 
     # Finding all combinations of points from the dictionary
