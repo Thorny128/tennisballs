@@ -1,9 +1,10 @@
 import random
 import itertools
 import time
+from pandas import DataFrame
 
-from Path import Path
-from Points import Point
+from SimulationFiles.Path import Path
+from SimulationFiles.Points import Point
 
 RANGE_POINT_COORDS = 10
 
@@ -35,11 +36,17 @@ def get_min_dist(dist_dic, w, b):
 
 
 class Simulation:
-    def __init__(self, num_simulations, num_points, human_weight, ball_weight):
+    def __init__(self, num_simulations, num_points, human_weight, ball_weight, points=None):
         self.num_simulations = num_simulations
         self.human_weight = human_weight
         self.ball_weight = ball_weight
         self.num_points = num_points
+
+        if points is not None:
+            self.points = [Point(item[0], item[1]) for item in points]
+            self.num_points = len(self.points)
+        else:
+            self.points = [pick_point() for _ in range(num_points)]
 
         self.simulation_data = {
             "Human Weight": [],
@@ -62,8 +69,7 @@ class Simulation:
             b = self.ball_weight
             n = self.num_points
 
-            points = [pick_point() for _ in range(n)]
-            points_generator = itertools.permutations(points)
+            points_generator = itertools.permutations(self.points)
 
             point_calc_dic = {}
             dist_dic = {}
@@ -110,3 +116,7 @@ class Simulation:
             self.simulation_data["Time to Calculate (seconds)"].append(time_to_calc)
             self.simulation_data["Algorithm Path"].append(min_path.points)
             self.simulation_data["SD Path"].append(shortest_distance_path.points)
+
+    def save_to_csv(self, filename):
+        df = DataFrame(data=self.simulation_data)
+        df.to_csv(filename)
