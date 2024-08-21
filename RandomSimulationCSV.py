@@ -6,6 +6,7 @@ import time
 
 NUM_OF_SIMULATIONS = 10
 
+
 def pick_point():
     return random.randint(0, 10)
 
