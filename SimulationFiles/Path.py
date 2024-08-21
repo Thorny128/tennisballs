@@ -21,3 +21,6 @@ class Path:
             p2 = self.points[i + 1]
             self.distance += p1.distance_to(p2)
         return self.distance
+
+    def decrypt_path(self):
+        return [[point.x, point.y] for point in self.points]
