@@ -4,6 +4,7 @@ import random
 from pandas import DataFrame
 import time
 
+NUM_OF_SIMULATIONS = 10
 
 def pick_point():
     return random.randint(0, 10)
@@ -99,7 +100,7 @@ simulation_data = {
 
 print("Starting calculations...")
 
-for iterations in range(10):
+for iterations in range(NUM_OF_SIMULATIONS):
     # Setting up variables
     points_dictionary = {}
     start = time.time()
