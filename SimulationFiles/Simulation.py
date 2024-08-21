@@ -114,8 +114,8 @@ class Simulation:
             self.simulation_data["Shortest Distance"].append(min_distance)
             self.simulation_data["Cost Savings"].append(rw_diff_path)
             self.simulation_data["Time to Calculate (seconds)"].append(time_to_calc)
-            self.simulation_data["Algorithm Path"].append(min_path.points)
-            self.simulation_data["SD Path"].append(shortest_distance_path.points)
+            self.simulation_data["Algorithm Path"].append(min_path.decrypt_path())
+            self.simulation_data["SD Path"].append(shortest_distance_path.decrypt_path())
 
     def save_to_csv(self, filename):
         df = DataFrame(data=self.simulation_data)
