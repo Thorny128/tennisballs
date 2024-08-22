@@ -9,5 +9,5 @@ if __name__ == "__main__":
 
     simulation = Simulation(num_simulations, num_points, human_weight, ball_weight, points)
     simulation.run_simulation()
-    simulation.save_to_csv('vartest.csv')
+    simulation.save_to_csv('var_test.csv')
     print("Done!")
