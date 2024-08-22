@@ -36,7 +36,7 @@ def get_min_dist(dist_dic, w, b):
 
 
 class Simulation:
-    def __init__(self, num_simulations, num_points, human_weight, ball_weight, points=None):
+    def __init__(self, num_simulations, num_points, human_weight=None, ball_weight=None, points=None):
         self.num_simulations = num_simulations
         self.human_weight = human_weight
         self.ball_weight = ball_weight
@@ -46,7 +46,7 @@ class Simulation:
             self.points = [Point(item[0], item[1]) for item in points]
             self.num_points = len(self.points)
         else:
-            self.points = [pick_point() for _ in range(num_points)]
+            self.points = None
 
         self.simulation_data = {
             "Human Weight": [],
@@ -65,9 +65,12 @@ class Simulation:
     def run_simulation(self):
         start = time.time()
         for _ in range(self.num_simulations):
-            w = self.human_weight
-            b = self.ball_weight
+            w = self.human_weight if self.human_weight is not None else random.randrange(25, 200, 5)
+            b = self.ball_weight if self.ball_weight is not None else random.randrange(25, 1000, 25) / 10
             n = self.num_points
+
+            if self.points is None:
+                self.points = [pick_point() for _ in range(n)]
 
             points_generator = itertools.permutations(self.points)
 
