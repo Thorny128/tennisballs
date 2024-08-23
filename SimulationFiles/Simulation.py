@@ -63,11 +63,12 @@ class Simulation:
         }
 
     def run_simulation(self):
-        start = time.time()
         for _ in range(self.num_simulations):
+            start = time.time()
+
             w = self.human_weight if self.human_weight is not None else random.randrange(25, 200, 5)
             b = self.ball_weight if self.ball_weight is not None else random.randrange(25, 1000, 25) / 10
-            n = self.num_points if self.num_points is not None else random.randint(2, 10)
+            n = self.num_points if self.num_points is not None else random.randint(2, RANGE_POINT_COORDS)
 
             if self.points is None:
                 self.points = [pick_point() for _ in range(n)]
@@ -119,6 +120,8 @@ class Simulation:
             self.simulation_data["Time to Calculate (seconds)"].append(time_to_calc)
             self.simulation_data["Algorithm Path"].append(min_path.decrypt_path())
             self.simulation_data["SD Path"].append(shortest_distance_path.decrypt_path())
+
+            self.points = None
             print(f"Finished simulation {_ + 1} of {self.num_simulations}")
 
     def save_to_csv(self, filename):
