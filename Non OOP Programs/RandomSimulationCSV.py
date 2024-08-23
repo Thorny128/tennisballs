@@ -196,5 +196,5 @@ for iterations in range(NUM_OF_SIMULATIONS):
     print(f"Finished set {iterations}")
 
 my_dataframe = DataFrame(data=simulation_data)
-my_dataframe.to_csv('random_sim_output.csv')
+my_dataframe.to_csv('old_random_sim_output.csv')
 print("Done!")
