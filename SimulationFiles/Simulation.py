@@ -83,14 +83,15 @@ class Simulation:
             for k in list(points_generator):
                 path = Path(list(k))
                 insert_origins(path)
-                path_cost = path.calculate_cost(w, b)
-                path_distance = path.calculate_distance()
+                path_cost = round(path.calculate_cost(w, b), 5)
+                path_distance = round(path.calculate_distance(), 5)
 
                 point_calc_dic[path_cost] = k
 
                 if path_distance in dist_dic:
-                    existing_path = Path(dist_dic[path_distance])
-                    existing_cost = existing_path.calculate_cost(w, b)
+                    existing_path = Path(list(dist_dic[path_distance]))
+                    insert_origins(existing_path)
+                    existing_cost = round(existing_path.calculate_cost(w, b), 5)
                     if path_cost < existing_cost:
                         dist_dic[path_distance] = k
                 else:
