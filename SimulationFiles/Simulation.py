@@ -18,23 +18,6 @@ def insert_origins(path):
     path.points.append(Point(0, 0))
 
 
-def get_min_dist(dist_dic, w, b):
-    min_dist = min(dist_dic)
-    min_path = Path(list(dist_dic[min_dist]))
-    insert_origins(min_path)
-    min_cost = min_path.calculate_cost(w, b)
-
-    for curr_dist in dist_dic:
-        if curr_dist == min_dist:
-            curr_path = Path(list(dist_dic[curr_dist]))
-            insert_origins(curr_path)
-            curr_cost = curr_path.calculate_cost(w, b)
-            if curr_cost < min_cost:
-                min_dist = curr_dist
-
-    return min_dist
-
-
 class Simulation:
     def __init__(self, num_simulations, num_points=None, human_weight=None, ball_weight=None, points=None):
         self.num_simulations = num_simulations
