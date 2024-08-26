@@ -1,0 +1,2 @@
+,Human Weight,Ball Weight,Number of Points,Minimum Cost - Our Algorithm,Minimum Cost - Shortest Distance,Distance of Path - Our Algorithm,Shortest Distance,Algorithm Path,SD Path,Cost Savings,Time to Calculate (seconds)
+0,190,87.5,4,7947.091,8748.361,22.87,22.87,"[[0, 0], [6, 3], [3, 4], [0, 8], [0, 4], [0, 0]]","[[0, 0], [0, 4], [0, 8], [3, 4], [6, 3], [0, 0]]",801.27,0.0001

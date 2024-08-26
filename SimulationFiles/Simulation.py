@@ -43,6 +43,8 @@ class Simulation:
         self.num_points = num_points
 
         if points is not None:
+            points.remove([0, 0])
+            points.remove([0, 0])
             self.points = [Point(item[0], item[1]) for item in points]
             self.num_points = len(self.points)
         else:
@@ -81,19 +83,21 @@ class Simulation:
             for k in list(points_generator):
                 path = Path(list(k))
                 insert_origins(path)
-                path_cost = round(path.calculate_cost(w, b), 2)
-                path_distance = round(path.calculate_distance(), 2)
+                path_cost = path.calculate_cost(w, b)
+                path_distance = path.calculate_distance()
 
                 point_calc_dic[path_cost] = k
+
                 if path_distance in dist_dic:
                     existing_path = Path(dist_dic[path_distance])
-                    if path_cost < existing_path.calculate_cost(w, b):
+                    existing_cost = existing_path.calculate_cost(w, b)
+                    if path_cost < existing_cost:
                         dist_dic[path_distance] = k
                 else:
                     dist_dic[path_distance] = k
 
             least_cost = min(point_calc_dic)
-            min_distance = get_min_dist(dist_dic, w, b)
+            min_distance = min(dist_dic)
 
             min_path = Path(list(point_calc_dic[least_cost]))
             shortest_distance_path = Path(list(dist_dic[min_distance]))
@@ -101,23 +105,23 @@ class Simulation:
             insert_origins(min_path)
             insert_origins(shortest_distance_path)
 
-            dist_of_lowest_cost_path = round(min_path.calculate_distance(), 2)
-            cost_of_shortest_path = round(shortest_distance_path.calculate_cost(w, b), 2)
+            dist_of_lowest_cost_path = min_path.calculate_distance()
+            cost_of_shortest_path = shortest_distance_path.calculate_cost(w, b)
 
-            dist_difference_path = round(dist_of_lowest_cost_path - min_distance, 3)
-            rw_diff_path = round(cost_of_shortest_path - least_cost, 3)
+            dist_difference_path = dist_of_lowest_cost_path - min_distance
+            rw_diff_path = cost_of_shortest_path - least_cost
 
-            time_to_calc = round(time.time() - start, 4)
+            time_to_calc = time.time() - start
 
             self.simulation_data["Human Weight"].append(w)
             self.simulation_data["Ball Weight"].append(b)
             self.simulation_data["Number of Points"].append(n)
-            self.simulation_data["Minimum Cost - Our Algorithm"].append(least_cost)
-            self.simulation_data["Minimum Cost - Shortest Distance"].append(cost_of_shortest_path)
-            self.simulation_data["Distance of Path - Our Algorithm"].append(dist_of_lowest_cost_path)
-            self.simulation_data["Shortest Distance"].append(min_distance)
-            self.simulation_data["Cost Savings"].append(rw_diff_path)
-            self.simulation_data["Time to Calculate (seconds)"].append(time_to_calc)
+            self.simulation_data["Minimum Cost - Our Algorithm"].append(round(least_cost, 3))
+            self.simulation_data["Minimum Cost - Shortest Distance"].append(round(cost_of_shortest_path, 3))
+            self.simulation_data["Distance of Path - Our Algorithm"].append(round(dist_of_lowest_cost_path, 3))
+            self.simulation_data["Shortest Distance"].append(round(min_distance, 3))
+            self.simulation_data["Cost Savings"].append(round(rw_diff_path, 3))
+            self.simulation_data["Time to Calculate (seconds)"].append(round(time_to_calc, 4))
             self.simulation_data["Algorithm Path"].append(min_path.decrypt_path())
             self.simulation_data["SD Path"].append(shortest_distance_path.decrypt_path())
 
