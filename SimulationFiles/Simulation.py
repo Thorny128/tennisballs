@@ -33,20 +33,6 @@ class Simulation:
         else:
             self.points = None
 
-        self.simulation_data = {
-            "Human Weight": [],
-            "Ball Weight": [],
-            "Number of Points": [],
-            "Minimum Cost - Our Algorithm": [],
-            "Minimum Cost - Shortest Distance": [],
-            "Distance of Path - Our Algorithm": [],
-            "Shortest Distance": [],
-            "Algorithm Path": [],
-            "SD Path": [],
-            "Cost Savings": [],
-            "Time to Calculate (seconds)": []
-        }
-
     def run_simulation(self):
         for _ in range(self.num_simulations):
             start = time.time()
