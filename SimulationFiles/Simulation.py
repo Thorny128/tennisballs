@@ -80,8 +80,6 @@ class Simulation:
                 else:
                     dist_dic[path_distance] = k
 
-            print("TEST: Finished generating points")
-
             least_cost = min(point_calc_dic)
             min_distance = min(dist_dic)
 
