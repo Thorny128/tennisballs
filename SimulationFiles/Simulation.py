@@ -7,6 +7,7 @@ from SimulationFiles.Path import Path
 from SimulationFiles.Points import Point
 
 RANGE_POINT_COORDS = 10
+MAX_NUM_POINTS = 10
 
 
 def pick_point():
@@ -53,7 +54,7 @@ class Simulation:
 
             w = self.human_weight if self.human_weight is not None else random.randrange(25, 200, 5)
             b = self.ball_weight if self.ball_weight is not None else random.randrange(25, 1000, 25) / 10
-            n = self.num_points if self.num_points is not None else random.randint(2, RANGE_POINT_COORDS)
+            n = self.num_points if self.num_points is not None else random.randint(3, MAX_NUM_POINTS)
 
             if self.points is None:
                 self.points = [pick_point() for _ in range(n)]
@@ -69,25 +70,21 @@ class Simulation:
                 path_cost = round(path.calculate_cost(w, b), 5)
                 path_distance = round(path.calculate_distance(), 5)
 
-                point_calc_dic[path_cost] = k
+                point_calc_dic[path_cost] = path
 
                 if path_distance in dist_dic:
-                    existing_path = Path(list(dist_dic[path_distance]))
-                    insert_origins(existing_path)
+                    existing_path = dist_dic[path_distance]
                     existing_cost = round(existing_path.calculate_cost(w, b), 5)
                     if path_cost < existing_cost:
-                        dist_dic[path_distance] = k
+                        dist_dic[path_distance] = path
                 else:
-                    dist_dic[path_distance] = k
+                    dist_dic[path_distance] = path
 
             least_cost = min(point_calc_dic)
             min_distance = min(dist_dic)
 
-            min_path = Path(list(point_calc_dic[least_cost]))
-            shortest_distance_path = Path(list(dist_dic[min_distance]))
-
-            insert_origins(min_path)
-            insert_origins(shortest_distance_path)
+            min_path = point_calc_dic[least_cost]
+            shortest_distance_path = dist_dic[min_distance]
 
             dist_of_lowest_cost_path = min_path.calculate_distance()
             cost_of_shortest_path = shortest_distance_path.calculate_cost(w, b)
