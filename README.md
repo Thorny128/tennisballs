@@ -35,7 +35,7 @@ pointA = Point(1, 2)
 pointB = Point(3, 5)
 
 print(pointA.x) # Returns 1
-print(pointB.distance_to(pointA)) # Returns √21, ~5.38
+print(pointB.distance_to(pointA)) # Returns √13, ~3.6
 ```
 
 ### Class: Path
