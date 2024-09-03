@@ -7,6 +7,7 @@ from SimulationFiles.Path import Path
 from SimulationFiles.Points import Point
 
 RANGE_POINT_COORDS = 10
+MAX_NUM_POINTS = 10
 
 
 def pick_point():
@@ -53,7 +54,7 @@ class Simulation:
 
             w = self.human_weight if self.human_weight is not None else random.randrange(25, 200, 5)
             b = self.ball_weight if self.ball_weight is not None else random.randrange(25, 1000, 25) / 10
-            n = self.num_points if self.num_points is not None else random.randint(2, RANGE_POINT_COORDS)
+            n = self.num_points if self.num_points is not None else random.randint(2, MAX_NUM_POINTS)
 
             if self.points is None:
                 self.points = [pick_point() for _ in range(n)]
