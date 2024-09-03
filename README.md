@@ -119,7 +119,7 @@ main logic starts.
 
 - Lines 23 - 49: Initializing parameters for the simulation. Checking if the user has provided points; if so, 
 automatically removing the origins, converting lists into Point classes, and setting `num_points`.
-- Lines 55 - 57: Either setting user-given parameters or automatically generating them.
+- Lines 53 - 57: We start the timer for the simulation. We set user-given parameters or automatically generate them.
   - If the user has submitted parameters, they will be saved as attributes (e.g. the constructor will set 
   `self.human_weight` to have a value, and in line 55 will set `w` to that value).
   - However, if the user has not submitted parameters, attributes like `self.human_weight` will be left as `None`
@@ -133,4 +133,11 @@ automatically removing the origins, converting lists into Point classes, and set
   origins to it. We also want to convert it into a `Path` object. We will refer to it as the "path".
   - 69: We insert origins to the path
   - 70 - 71: We calculate the cost and distance of the path, rounded to 5 decimal places to prevent rounding errors.
-  - 73: We save 
+  - 73: We save the path into a dictionary which stores paths and their cost.
+  - 75 - 81: We check if there is an existing entry for the same cost in the dictionary which stores paths and their
+  costs. If there is an existing entry, we compare our path with the one in the dictionary and see which one yields a
+  lower cost. We store that one in the dictionary.
+- Lines 83 - 95: We find data for the lowest cost and lowest distance paths, and compare their statistics. We also end
+the timer for the simulation
+- Lines 97 - 107: We add all our data to the `simulation_data` dictionary
+- Lines 109 - 110: We reset `self.points` for the next simulation, and let the user know
