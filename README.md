@@ -1,5 +1,5 @@
 # Tennis Balls
-## Code Structure
+## Class Documentation
 The code is created using Object-Oriented Programming. It consists of classes which are used to create objects.
 Each object contains methods (functions) and attributes (variables). As an example, a car factory (the class) is
 producing cars (the object). Each car has specific attributes (e.g. color, trim level) and methods 
@@ -112,3 +112,25 @@ heavy_ball_sim.save_to_csv('heavy_ball_sim_results.csv')
 heavy_human_sim.save_to_csv('heavy_human_sim_results.csv')
 interesting_points_sim.save_to_csv('interesting_points_sim.csv')
 ```
+
+## Line-by-line Breakdown of Program
+This part of the documentation explains how the code works, line-by-line. We will start at line 23 as that is where the 
+main logic starts.
+
+- Lines 23 - 49: Initializing parameters for the simulation. Checking if the user has provided points; if so, 
+automatically removing the origins, converting lists into Point classes, and setting `num_points`.
+- Lines 55 - 57: Either setting user-given parameters or automatically generating them.
+  - If the user has submitted parameters, they will be saved as attributes (e.g. the constructor will set 
+  `self.human_weight` to have a value, and in line 55 will set `w` to that value).
+  - However, if the user has not submitted parameters, attributes like `self.human_weight` will be left as `None`
+  instead (they will not have a value). Lines 55-57 will recognize this and randomly assign a value.
+  - This logic allows the simulation to remember what values should be randomly generated, and what values should be 
+  hardcoded
+- Lines 59 - 60: Creating points if not already given
+- Line 62: Generating permutations of points
+- Lines 68 - 82: 
+  - 68: `k` represents one of the permutations. It is a tuple, so it must be converted into a list, so we can insert 
+  origins to it. We also want to convert it into a `Path` object. We will refer to it as the "path".
+  - 69: We insert origins to the path
+  - 70 - 71: We calculate the cost and distance of the path, rounded to 5 decimal places to prevent rounding errors.
+  - 73: We save 
