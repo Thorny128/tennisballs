@@ -71,9 +71,9 @@ print(path.decrypt_path()) # Returns [[0, 0], [1, 2], [3, 5], [0, 0]]
   - `MAX_NUM_POINTS`: Defines the maximum number of points that can be generated randomly.
 - **Attributes:**
   - `num_simulations`: The number of simulations to run.
-  - `human_weight`: The weight of the human. Randomly set between 25 and 200 if not provided.
-  - `ball_weight`: The weight of the ball. Randomly set between 2.5 and 100 if not provided.
-  - `num_points`: The number of points in the path. Randomly set between 3 and `MAX_NUM_POINTS` if not provided.
+  - `u_human_weight`: The weight of the human. Randomly set between 25 and 200 if not provided.
+  - `u_ball_weight`: The weight of the ball. Randomly set between 2.5 and 100 if not provided.
+  - `u_num_points`: The number of points in the path. Randomly set between 3 and `MAX_NUM_POINTS` if not provided.
   Automatically set to the number of non-origin points in the `points` attribute if `points` is given.
   - `points`: A list within a list representing a path with points. Randomly generated with values ranging from 0 to 
   `RANGE_POINT_COORDS` if not provided.
@@ -118,7 +118,7 @@ This part of the documentation explains how the code works, line-by-line. We wil
 main logic starts.
 
 - Lines 23 - 49: Initializing parameters for the simulation. Checking if the user has provided points; if so, 
-automatically removing the origins, converting lists into Point classes, and setting `num_points`.
+automatically removing the origins, converting lists into Point classes, and setting `u_num_points`.
 - Lines 53 - 57: We start the timer for the simulation. We set user-given parameters or automatically generate them.
   - If the user has submitted parameters, they will be saved as attributes (e.g. the constructor will set 
   `self.human_weight` to have a value, and in line 55 will set `w` to that value).
