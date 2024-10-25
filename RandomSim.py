@@ -1,7 +1,7 @@
 from SimulationFiles.Simulation import Simulation
 
 if __name__ == "__main__":
-    # Modify this
+    # Change the value below
     NUM_SIMULATIONS = 10
 
     print("Starting Simulations")
