@@ -10,26 +10,27 @@ RANGE_POINT_COORDS = 10
 MAX_NUM_POINTS = 10
 
 # Picks a random point
-def pick_point():
-    return Point(random.randint(0, RANGE_POINT_COORDS), random.randint(0, RANGE_POINT_COORDS))
+def pick_point(index):
+    return Point(random.randint(0, RANGE_POINT_COORDS), random.randint(0, RANGE_POINT_COORDS), index=index+1)
 
 # Inserts [0, 0] on both sides of a path
 def insert_origins(path):
-    path.points.insert(0, Point(0, 0))
-    path.points.append(Point(0, 0))
+    path.points.insert(0, Point(0, 0, 0))
+    path.points.append(Point(0, 0, len(path.points)))
 
 
 class Simulation:
-    def __init__(self, num_simulations, num_points=None, human_weight=None, ball_weight=None, points=None):
+    def __init__(self, num_simulations, num_points=None, human_weight=None, ball_weight=None, points=None, distance_matrix=None):
         self.num_simulations = num_simulations
         self.u_human_weight = human_weight
         self.u_ball_weight = ball_weight
         self.u_num_points = num_points
+        self.distance_matrix = distance_matrix
 
         if points is not None:
             points.remove([0, 0])
             points.remove([0, 0])
-            self.points = [Point(item[0], item[1]) for item in points]
+            self.points = [Point(item[0], item[1], index=i+1) for i, item in points]
             self.u_num_points = len(self.points)
         else:
             self.points = None
@@ -61,7 +62,7 @@ class Simulation:
             ball_weight = self.u_ball_weight if self.u_ball_weight is not None else random.randrange(25, 1000, 25) / 10
             number_of_points = self.u_num_points if self.u_num_points is not None else random.randint(3, MAX_NUM_POINTS)
             if self.points is None:
-                self.points = [pick_point() for _ in range(number_of_points)]
+                self.points = [pick_point(i) for i in range(number_of_points)]
 
             points_generator = itertools.permutations(self.points)
 
@@ -70,7 +71,7 @@ class Simulation:
 
             # Main logic - calculating all paths and putting their data in dictionaries
             for k in list(points_generator):
-                path = Path(list(k))
+                path = Path(list(k), self.distance_matrix)
                 insert_origins(path)
                 path_cost = round(path.calculate_cost(human_weight, ball_weight), 5)
                 path_distance = round(path.calculate_distance(), 5)

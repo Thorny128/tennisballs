@@ -2,9 +2,10 @@ import math
 
 
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x, y, index=None):
         self.x = x
         self.y = y
+        self.index = index
 
     def distance_to(self, other_point):
         diff_x = self.x - other_point.x
