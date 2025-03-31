@@ -4,7 +4,7 @@ import time
 from pandas import DataFrame
 
 from SimulationFiles.Path import Path
-from SimulationFiles.Points import Point
+from SimulationFiles.Point import Point
 
 RANGE_POINT_COORDS = 10
 MAX_NUM_POINTS = 10
@@ -12,6 +12,7 @@ MAX_NUM_POINTS = 10
 # Inserts [0, 0] on both sides of a path
 def insert_origins(path):
     path.points.insert(0, Point(0, 0, 0))
+    path.points.insert(path.get_length(), Point(0, 0, 0))
 
 class Simulation:
     def __init__(self, num_simulations, distance_matrix, points, human_weight=None, ball_weight=None):
@@ -22,7 +23,7 @@ class Simulation:
 
         points.remove([0, 0])
         points.remove([0, 0])
-        self.points = [Point(item[0], item[1], index=i + 1) for i, item in enumerate(points)]
+        self.points = [Point(item[0], item[1], index= i + 1) for i, item in enumerate(points)]
         self.u_num_points = len(self.points)
 
 

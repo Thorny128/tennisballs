@@ -28,14 +28,15 @@ For example, if I want to make a new point I will write `myPoint = Point(1, 2)`.
   - `distance_to(self, other_point)`: Calculates the Euclidean distance from the current point to another point.
 
 **Example Usage**
+
 ```python
-from SimulationFiles.Points import Point
+from SimulationFiles.Point import Point
 
 pointA = Point(1, 2)
 pointB = Point(3, 5)
 
-print(pointA.x) # Returns 1
-print(pointB.distance_to(pointA)) # Returns √13, ~3.6
+print(pointA.x)  # Returns 1
+print(pointB.distance_to(pointA))  # Returns √13, ~3.6
 ```
 
 ### Class: Path
@@ -53,16 +54,17 @@ print(pointB.distance_to(pointA)) # Returns √13, ~3.6
   - `decrypt_path(self)`: Returns a representation of the path as a list, instead of `Point` objects
 
 **Example Usage**
+
 ```python
 from SimulationFiles.Path import Path
-from SimulationFiles.Points import Point
+from SimulationFiles.Point import Point
 
 points = [Point(0, 0), Point(1, 2), Point(3, 5), Point(0, 0)]
 path = Path(points)
 
-print(path.points) # Returns the list of points as Point objects
-print(path.calculate_distance()) # Returns the total distance of the path
-print(path.decrypt_path()) # Returns [[0, 0], [1, 2], [3, 5], [0, 0]]
+print(path.points)  # Returns the list of points as Point objects
+print(path.calculate_distance())  # Returns the total distance of the path
+print(path.decrypt_path())  # Returns [[0, 0], [1, 2], [3, 5], [0, 0]]
 ```
 
 ### Class: Simulation

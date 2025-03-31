@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     print("Starting Simulations")
     points = [[0, 0], [1, 2], [3, 5], [6, 1], [8, 3], [0, 0]]
-    simulation = Simulation(NUM_SIMULATIONS, distance_matrix, points, 4, 1)
+    simulation = Simulation(NUM_SIMULATIONS, distance_matrix, points, 1, 1)
     simulation.run_simulation()
     simulation.save_to_csv('random_sim_output.csv')
     print("Done!")

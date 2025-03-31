@@ -8,7 +8,7 @@ class Path:
     def calculate_cost(self, w, b):
         self.cost = 0
         balls = 0
-        for i in range(len(self.points) - 1):
+        for i in range(self.get_length() - 1):
             p1 = self.points[i]
             p2 = self.points[i + 1]
             self.cost += self.get_distance(p1, p2) * (balls + w)
@@ -17,7 +17,7 @@ class Path:
 
     def calculate_distance(self):
         self.distance = 0
-        for i in range(len(self.points) - 1):
+        for i in range(self.get_length() - 1):
             p1 = self.points[i]
             p2 = self.points[i + 1]
             self.distance += self.get_distance(p1, p2)
@@ -25,9 +25,12 @@ class Path:
 
     def get_distance(self, p1, p2):
         if self.distance_matrix is not None:
-            return self.distance_matrix[p1.index-1][p2.index-1]
+            return self.distance_matrix[p1.index][p2.index]
         else:
             return p1.distance_to(p2)
 
     def decrypt_path(self):
         return [[point.x, point.y] for point in self.points]
+
+    def get_length(self):
+        return len(self.points)
