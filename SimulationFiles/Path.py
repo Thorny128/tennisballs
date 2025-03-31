@@ -25,8 +25,6 @@ class Path:
 
     def get_distance(self, p1, p2):
         if self.distance_matrix is not None:
-            print(f"P1 Index: {p1.index} P2 Index: {p2.index}")
-            # print(f"Distance from Matrix: {self.distance_matrix[p1.index][p2.index]}")
             return self.distance_matrix[p1.index-1][p2.index-1]
         else:
             return p1.distance_to(p2)
